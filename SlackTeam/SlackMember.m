@@ -11,6 +11,7 @@
 // Slack Member JSON Keys
 
 NSString * const kDisplayName = @"name";
+NSString * const kProfile = @"profile";
 NSString * const kProfilePicOriginal = @"image_original";
 NSString * const kProfilePicThumbnail = @"image_192";
 NSString * const kRealName = @"real_name";
@@ -26,13 +27,12 @@ NSString * const kTitle = @"title";
 
 #pragma mark Public Methods
 
-+ (NSArray *)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context {
++ (void)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context {
     
     NSMutableArray *parsedMembers = [NSMutableArray array];
     for (NSDictionary *member in membersJson) {
         [parsedMembers addObject:[SlackMember _parseIndividualSlackMemberJson:member manageContext:context]];
     }
-    return parsedMembers;
 }
 
 #pragma mark - Private Helper Methods
@@ -40,15 +40,18 @@ NSString * const kTitle = @"title";
 + (SlackMember *)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson
                                    manageContext:(NSManagedObjectContext *)context {
     
-    NSEntityDescription *entityDesc = [[NSEntityDescription alloc] init];
-    entityDesc.name = [[self class] description];
+    SlackMember *member =
+         (SlackMember *)[NSEntityDescription insertNewObjectForEntityForName:@"SlackMember"
+                                                      inManagedObjectContext:context];
     
-    SlackMember *member = [[SlackMember alloc] initWithEntity:entityDesc insertIntoManagedObjectContext:context];
     member.name = memberJson[kDisplayName];
     member.realName = memberJson[kRealName];
     member.title = memberJson[kTitle];
-    member.imageThumbnail = memberJson[kProfilePicThumbnail];
-    member.largeImage = memberJson[kProfilePicOriginal];
+    
+    NSDictionary *profileDict = memberJson[kProfile];
+    
+    member.imageThumbnail = profileDict[kProfilePicThumbnail];
+    member.largeImage = profileDict[kProfilePicOriginal];
     
     return member;
 }

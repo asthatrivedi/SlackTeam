@@ -17,6 +17,6 @@
 @property (nonatomic, retain) NSString * imageThumbnail;
 @property (nonatomic, retain) NSString * largeImage;
 
-+ (NSArray *)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context;
++ (void)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context;
 
 @end

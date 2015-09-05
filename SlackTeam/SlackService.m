@@ -50,16 +50,26 @@ NSString * const kTitleKey = @"title";
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     request.allowsCellularAccess = YES;
     
-    NSManagedObjectContext *managedContext =
+    __weak NSManagedObjectContext *managedContext =
         ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *members = [SlackMember parseSlackMembersJson:responseObject[kMembersKey]
-                                                manageContext:managedContext];
-        NSLog(@"parsed objects %@", members);
+        [SlackMember parseSlackMembersJson:responseObject[kMembersKey]
+                             manageContext:managedContext];
+        
+        NSError *error = nil;
+        
+        [managedContext save:&error];
+        
+        if (error) {
+            NSLog(@"error %@", error.description);
+        }
+        else {
+            NSLog(@"success");
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error!!");
