@@ -8,11 +8,13 @@
 
 #import <CoreData/CoreData.h>
 
+#import "SlackTeamViewModel.h"
+
 @interface SlackService : NSObject
 
 + (instancetype)sharedService;
 
 - (void)pollSlackTeamListFromServer;
-- (NSArray *)getSlackList;
+- (SlackTeamViewModel *)getSlackList;
 
 @end

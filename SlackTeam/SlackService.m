@@ -81,7 +81,7 @@ NSString * const kTitleKey = @"title";
     [operation start];
 }
 
-- (NSArray *)getSlackList {
+- (SlackTeamViewModel *)getSlackList {
     
     __weak NSManagedObjectContext *managedContext =
         ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
@@ -94,10 +94,11 @@ NSString * const kTitleKey = @"title";
     [fetchRequest setEntity:entity];
     NSArray *fetchedObjects = [managedContext executeFetchRequest:fetchRequest error:&error];
     
-    return fetchedObjects;
+    return [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:fetchedObjects];
 }
 
 #pragma mark - Private Helper Methods
+
 
 - (void)_contentAddedNotification {
     static NSNotification *notification = nil;

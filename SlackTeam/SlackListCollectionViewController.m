@@ -10,11 +10,12 @@
 
 #import "SlackListCollectionViewCell.h"
 #import "SlackService.h"
+#import "SlackTeamViewModel.h"
 #import "Utils.h"
 
 @interface SlackListCollectionViewController ()
 
-@property (nonatomic, strong) NSArray *slackTeamMembers;
+@property (nonatomic, strong) SlackTeamViewModel *slackTeamViewModel;
 
 @end
 
@@ -60,14 +61,13 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return [[self slackTeamMembers] count];
+    return [self.slackTeamViewModel.slackMembers count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SlackListCollectionViewCell *cell = (SlackListCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor = [UIColor whiteColor];
-    [cell setupCurvyView];
+    [cell setupViewWithSlackViewModel:[self.slackTeamViewModel.slackMembers objectAtIndex:indexPath.row]];
     
     return cell;
 }
@@ -89,7 +89,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 #pragma mark Notification Handlers
 
 - (void)handleCoreDataChangeNotification {
-    self.slackTeamMembers = [[SlackService sharedService] getSlackList];
+    self.slackTeamViewModel = [[SlackService sharedService] getSlackList];
     [self.collectionView reloadData];
 }
 

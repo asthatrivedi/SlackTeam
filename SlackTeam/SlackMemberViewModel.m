@@ -8,8 +8,17 @@
 
 #import "SlackMemberViewModel.h"
 
+
 @implementation SlackMemberViewModel
 
-
++ (SlackMemberViewModel *)viewModelWithSlackMember:(SlackMember *)slackMember {
+    
+    SlackMemberViewModel *viewModel = [[SlackMemberViewModel alloc] init];
+    viewModel.name = slackMember.name;
+    viewModel.realName = slackMember.realName;
+    viewModel.title = slackMember.title;
+    
+    return viewModel;
+}
 
 @end

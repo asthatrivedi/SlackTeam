@@ -13,6 +13,7 @@
 		E04E9BA01B9BC099003E6959 /* SlackListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9B9F1B9BC099003E6959 /* SlackListCollectionViewCell.m */; };
 		E04E9BA31B9C11FF003E6959 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA21B9C11FF003E6959 /* Utils.m */; };
 		E04E9BA61B9CE8BF003E6959 /* SlackMemberViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */; };
+		E04E9BA91B9CEF8C003E6959 /* SlackTeamViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA81B9CEF8C003E6959 /* SlackTeamViewModel.m */; };
 		E052E1681B915D1900847277 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E1671B915D1900847277 /* main.m */; };
 		E052E16B1B915D1900847277 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E16A1B915D1900847277 /* AppDelegate.m */; };
 		E052E1711B915D1900847277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E052E16F1B915D1900847277 /* Main.storyboard */; };
@@ -49,6 +50,8 @@
 		E04E9BA21B9C11FF003E6959 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		E04E9BA41B9CE8BF003E6959 /* SlackMemberViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackMemberViewModel.h; sourceTree = "<group>"; };
 		E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackMemberViewModel.m; sourceTree = "<group>"; };
+		E04E9BA71B9CEF8C003E6959 /* SlackTeamViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackTeamViewModel.h; sourceTree = "<group>"; };
+		E04E9BA81B9CEF8C003E6959 /* SlackTeamViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackTeamViewModel.m; sourceTree = "<group>"; };
 		E052E1621B915D1900847277 /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E052E1661B915D1900847277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E052E1671B915D1900847277 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 				E04E9B9F1B9BC099003E6959 /* SlackListCollectionViewCell.m */,
 				E04E9BA41B9CE8BF003E6959 /* SlackMemberViewModel.h */,
 				E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */,
+				E04E9BA71B9CEF8C003E6959 /* SlackTeamViewModel.h */,
+				E04E9BA81B9CEF8C003E6959 /* SlackTeamViewModel.m */,
 				E052E18B1B915D4500847277 /* TeamTableViewController.h */,
 				E052E18C1B915D4500847277 /* TeamTableViewController.m */,
 				E052E18E1B9168BE00847277 /* DetailViewController.h */,
@@ -320,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E04E9BA91B9CEF8C003E6959 /* SlackTeamViewModel.m in Sources */,
 				E052E16B1B915D1900847277 /* AppDelegate.m in Sources */,
 				E052E1961B922BA600847277 /* SlackTeamModel.xcdatamodeld in Sources */,
 				E052E18D1B915D4500847277 /* TeamTableViewController.m in Sources */,
