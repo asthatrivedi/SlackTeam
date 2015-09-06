@@ -10,4 +10,9 @@
 
 @implementation SlackListCollectionViewCell
 
+- (void)setupCurvyView {
+    self.layer.cornerRadius = 5.f;
+    [self setNeedsDisplay];
+}
+
 @end

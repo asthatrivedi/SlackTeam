@@ -10,6 +10,7 @@
 
 #import "SlackListCollectionViewCell.h"
 #import "SlackService.h"
+#import "Utils.h"
 
 @interface SlackListCollectionViewController ()
 
@@ -26,10 +27,19 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     
     self.title = @"Slack Team";
     
+    self.collectionView.backgroundColor = [UIColor colorWithRed:60.f/255.f green:42.f/255.f blue:59.f/255.f alpha:1.f];
+
     // Register cell classes
     [self.collectionView registerClass:[SlackListCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
-    // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleCoreDataChangeNotification)
+                                                 name:kSlackServiceAddedContentNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(handleCoreDataChangeNotification)
+                                                 name:kPhotoManagerContentUpdateNotification
+                                               object:nil];
 }
 
 /*
@@ -56,6 +66,9 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SlackListCollectionViewCell *cell = (SlackListCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
+    cell.backgroundColor = [UIColor whiteColor];
+    [cell setupCurvyView];
+    
     return cell;
 }
 
@@ -63,13 +76,21 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
-    return CGSizeMake(100, 100);
+    CGFloat width = [[UIScreen mainScreen] bounds].size.width;
+    
+    return CGSizeMake(width - 40, 200);
 }
 
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    
-//    return UIEdgeInsetsZero;
-//}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsMake(20, 20, 30, 20);
+}
 
+#pragma mark Notification Handlers
+
+- (void)handleCoreDataChangeNotification {
+    self.slackTeamMembers = [[SlackService sharedService] getSlackList];
+    [self.collectionView reloadData];
+}
 
 @end

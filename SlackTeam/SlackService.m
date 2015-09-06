@@ -11,6 +11,7 @@
 
 #import "AppDelegate.h"
 #import "SlackMember.h"
+#import "Utils.h"
 
 
 NSString * const kAppToken = @"xoxp-4698769766-4698769768-4898023905-7a1afa";
@@ -68,7 +69,9 @@ NSString * const kTitleKey = @"title";
             NSLog(@"error %@", error.description);
         }
         else {
+            [self _contentAddedNotification];
             NSLog(@"success");
+            
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -95,5 +98,18 @@ NSString * const kTitleKey = @"title";
 }
 
 #pragma mark - Private Helper Methods
+
+- (void)_contentAddedNotification {
+    static NSNotification *notification = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        notification = [NSNotification notificationWithName:kSlackServiceAddedContentNotification object:nil];
+    });
+    
+    [[NSNotificationQueue defaultQueue] enqueueNotification:notification
+                                               postingStyle:NSPostASAP
+                                               coalesceMask:NSNotificationCoalescingOnName
+                                                   forModes:nil];
+}
 
 @end

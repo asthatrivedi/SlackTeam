@@ -15,4 +15,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *realName;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 
+- (void)setupCurvyView;
+
 @end

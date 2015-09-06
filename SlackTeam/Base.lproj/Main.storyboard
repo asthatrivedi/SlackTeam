@@ -1,14 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJw-Km-iNQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Xx-FJ-aLc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Slack List Collection View Controller-->
+        <!--navigation-->
+        <scene sceneID="SYx-yM-wzY">
+            <objects>
+                <navigationController title="navigation" id="5Xx-FJ-aLc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="C20-ql-N45">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sdH-CB-awR" kind="relationship" relationship="rootViewController" id="ZKH-LG-pL2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dOh-Bz-cel" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1569" y="316.5"/>
+        </scene>
+        <!--Slack Team-->
         <scene sceneID="nlN-eR-BfB">
             <objects>
-                <collectionViewController id="sdH-CB-awR" customClass="SlackListCollectionViewController" sceneMemberID="viewController">
+                <collectionViewController title="Slack Team" id="sdH-CB-awR" customClass="SlackListCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MYr-sm-zPa">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,52 +183,68 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Y3-Yu-g8q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="666" y="483"/>
+            <point key="canvasLocation" x="-795" y="316.5"/>
         </scene>
         <!--Detail View Controller-->
-        <scene sceneID="nTF-qL-TGc">
+        <scene sceneID="V3f-8c-dAY">
             <objects>
-                <viewController id="AMf-5N-uTJ" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailView" id="xVk-Ml-6Dh" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="xnc-Rq-JSd"/>
-                        <viewControllerLayoutGuide type="bottom" id="Wk1-QQ-LbL"/>
+                        <viewControllerLayoutGuide type="top" id="og6-ew-edj"/>
+                        <viewControllerLayoutGuide type="bottom" id="ep8-7b-DfU"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="LFY-98-eoR">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="GCp-Ai-SmS">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Test" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRV-9i-O6O">
-                                <rect key="frame" x="303" y="189" width="32" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y3x-fY-UBP">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fcR-9U-d8u">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Detail" id="JJ5-ya-RhO"/>
+                                </items>
                                 <variation key="heightClass=compact-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="184" y="143" width="32" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="44"/>
                                 </variation>
-                            </label>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="y3x-fY-UBP" secondAttribute="trailing" constant="-16" id="OkY-uf-och"/>
+                            <constraint firstItem="y3x-fY-UBP" firstAttribute="top" secondItem="GCp-Ai-SmS" secondAttribute="topMargin" id="V9h-ah-jUA"/>
+                            <constraint firstItem="y3x-fY-UBP" firstAttribute="leading" secondItem="GCp-Ai-SmS" secondAttribute="leadingMargin" constant="-16" id="W2S-CL-YNm"/>
+                            <constraint firstItem="ep8-7b-DfU" firstAttribute="top" secondItem="y3x-fY-UBP" secondAttribute="bottom" id="aWI-Pa-Dhx"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="y3x-fY-UBP"/>
+                                <exclude reference="fcR-9U-d8u"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="OkY-uf-och"/>
+                                <exclude reference="V9h-ah-jUA"/>
+                                <exclude reference="W2S-CL-YNm"/>
+                                <exclude reference="aWI-Pa-Dhx"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="y3x-fY-UBP"/>
+                                <include reference="fcR-9U-d8u"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="OkY-uf-och"/>
+                                <include reference="V9h-ah-jUA"/>
+                                <include reference="W2S-CL-YNm"/>
+                                <include reference="aWI-Pa-Dhx"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="T6j-w9-Umw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gu4-aY-UXO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1463" y="474"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="uwo-vN-fjx">
-            <objects>
-                <navigationController id="MJw-Km-iNQ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7PY-gQ-0xz">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="sdH-CB-awR" kind="relationship" relationship="rootViewController" id="SbD-hz-pi0"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qx7-VC-YqV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-82.5" y="483"/>
+            <point key="canvasLocation" x="-6" y="316.5"/>
         </scene>
     </scenes>
     <resources>

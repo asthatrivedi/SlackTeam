@@ -11,6 +11,8 @@
 		E04E9B9A1B9BBA63003E6959 /* slack-icon-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = E04E9B991B9BBA63003E6959 /* slack-icon-logo.png */; };
 		E04E9B9D1B9BBB39003E6959 /* SlackListCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9B9C1B9BBB39003E6959 /* SlackListCollectionViewController.m */; };
 		E04E9BA01B9BC099003E6959 /* SlackListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9B9F1B9BC099003E6959 /* SlackListCollectionViewCell.m */; };
+		E04E9BA31B9C11FF003E6959 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA21B9C11FF003E6959 /* Utils.m */; };
+		E04E9BA61B9CE8BF003E6959 /* SlackMemberViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */; };
 		E052E1681B915D1900847277 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E1671B915D1900847277 /* main.m */; };
 		E052E16B1B915D1900847277 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E16A1B915D1900847277 /* AppDelegate.m */; };
 		E052E1711B915D1900847277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E052E16F1B915D1900847277 /* Main.storyboard */; };
@@ -43,6 +45,10 @@
 		E04E9B9C1B9BBB39003E6959 /* SlackListCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackListCollectionViewController.m; sourceTree = "<group>"; };
 		E04E9B9E1B9BC099003E6959 /* SlackListCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackListCollectionViewCell.h; sourceTree = "<group>"; };
 		E04E9B9F1B9BC099003E6959 /* SlackListCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackListCollectionViewCell.m; sourceTree = "<group>"; };
+		E04E9BA11B9C11FF003E6959 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		E04E9BA21B9C11FF003E6959 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		E04E9BA41B9CE8BF003E6959 /* SlackMemberViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackMemberViewModel.h; sourceTree = "<group>"; };
+		E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackMemberViewModel.m; sourceTree = "<group>"; };
 		E052E1621B915D1900847277 /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E052E1661B915D1900847277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E052E1671B915D1900847277 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,12 +136,16 @@
 				E04E9B9C1B9BBB39003E6959 /* SlackListCollectionViewController.m */,
 				E04E9B9E1B9BC099003E6959 /* SlackListCollectionViewCell.h */,
 				E04E9B9F1B9BC099003E6959 /* SlackListCollectionViewCell.m */,
+				E04E9BA41B9CE8BF003E6959 /* SlackMemberViewModel.h */,
+				E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */,
 				E052E18B1B915D4500847277 /* TeamTableViewController.h */,
 				E052E18C1B915D4500847277 /* TeamTableViewController.m */,
 				E052E18E1B9168BE00847277 /* DetailViewController.h */,
 				E052E18F1B9168BE00847277 /* DetailViewController.m */,
 				E052E1911B92102D00847277 /* SlackService.h */,
 				E052E1921B92102D00847277 /* SlackService.m */,
+				E04E9BA11B9C11FF003E6959 /* Utils.h */,
+				E04E9BA21B9C11FF003E6959 /* Utils.m */,
 				E052E1941B922BA600847277 /* SlackTeamModel.xcdatamodeld */,
 				E052E1971B92302400847277 /* SlackMember.h */,
 				E052E1981B92302400847277 /* SlackMember.m */,
@@ -313,9 +323,11 @@
 				E052E16B1B915D1900847277 /* AppDelegate.m in Sources */,
 				E052E1961B922BA600847277 /* SlackTeamModel.xcdatamodeld in Sources */,
 				E052E18D1B915D4500847277 /* TeamTableViewController.m in Sources */,
+				E04E9BA31B9C11FF003E6959 /* Utils.m in Sources */,
 				E04E9B9D1B9BBB39003E6959 /* SlackListCollectionViewController.m in Sources */,
 				E052E1931B92102D00847277 /* SlackService.m in Sources */,
 				E052E1681B915D1900847277 /* main.m in Sources */,
+				E04E9BA61B9CE8BF003E6959 /* SlackMemberViewModel.m in Sources */,
 				E052E1991B92302400847277 /* SlackMember.m in Sources */,
 				E04E9BA01B9BC099003E6959 /* SlackListCollectionViewCell.m in Sources */,
 				E052E1901B9168BE00847277 /* DetailViewController.m in Sources */,

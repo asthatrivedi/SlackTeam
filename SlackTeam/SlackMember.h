@@ -11,6 +11,7 @@
 
 @interface SlackMember : NSManagedObject
 
+@property (nonatomic, retain) NSString * memberId;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * realName;
 @property (nonatomic, retain) NSString * title;
