@@ -29,15 +29,14 @@ NSString * const kTitle = @"title";
 
 + (void)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context {
     
-    NSMutableArray *parsedMembers = [NSMutableArray array];
     for (NSDictionary *member in membersJson) {
-        [parsedMembers addObject:[SlackMember _parseIndividualSlackMemberJson:member manageContext:context]];
+        [SlackMember _parseIndividualSlackMemberJson:member manageContext:context];
     }
 }
 
 #pragma mark - Private Helper Methods
 
-+ (SlackMember *)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson
++ (void)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson
                                    manageContext:(NSManagedObjectContext *)context {
     
     SlackMember *member =
@@ -52,8 +51,6 @@ NSString * const kTitle = @"title";
     
     member.imageThumbnail = profileDict[kProfilePicThumbnail];
     member.largeImage = profileDict[kProfilePicOriginal];
-    
-    return member;
 }
 
 

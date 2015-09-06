@@ -42,7 +42,7 @@ NSString * const kTitleKey = @"title";
 
 #pragma mark - Web Service Methods
 
-- (void)getSlackTeamList
+- (void)pollSlackTeamListFromServer
 {
     NSString *preparedString = [NSString stringWithFormat:kUrl,kAppToken];
     NSURL *url = [NSURL URLWithString:preparedString];
@@ -76,6 +76,22 @@ NSString * const kTitleKey = @"title";
     }];
     
     [operation start];
+}
+
+- (NSArray *)getSlackList {
+    
+    __weak NSManagedObjectContext *managedContext =
+        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    
+    NSError *error = nil;
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SlackMember"
+                                              inManagedObjectContext:managedContext];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [managedContext executeFetchRequest:fetchRequest error:&error];
+    
+    return fetchedObjects;
 }
 
 #pragma mark - Private Helper Methods

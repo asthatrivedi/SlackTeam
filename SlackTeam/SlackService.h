@@ -10,7 +10,9 @@
 
 @interface SlackService : NSObject
 
-- (void)getSlackTeamList;
 + (instancetype)sharedService;
+
+- (void)pollSlackTeamListFromServer;
+- (NSArray *)getSlackList;
 
 @end

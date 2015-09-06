@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>80090F88-7004-4058-A9C0-7B4C73E65FA6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>SlackTeam</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F5112ABB9E11A9A697CF3C712A44CDC23D746436</key>
+		<string>https://github.com/asthatrivedi/SlackTeam.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>SlackTeam.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F5112ABB9E11A9A697CF3C712A44CDC23D746436</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/asthatrivedi/SlackTeam.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F5112ABB9E11A9A697CF3C712A44CDC23D746436</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F5112ABB9E11A9A697CF3C712A44CDC23D746436</string>
+			<key>IDESourceControlWCCName</key>
+			<string>SlackTeam</string>
+		</dict>
+	</array>
+</dict>
+</plist>
