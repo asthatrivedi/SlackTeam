@@ -10,12 +10,26 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackTeam/SlackListCollectionViewController.m"
-            timestampString = "463270259.742225"
+            timestampString = "463293961.662916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "-viewDidLoad"
+            startingLineNumber = "101"
+            endingLineNumber = "101">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlackTeam/SlackMember.m"
+            timestampString = "463269703.778557"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "+_parseIndividualSlackMemberJson:manageContext:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,28 +40,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackTeam/SlackListCollectionViewController.m"
-            timestampString = "463270259.742225"
+            timestampString = "463293961.662916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-handleCoreDataChangeNotification"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-collectionView:cellForItemAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SlackTeam/SlackMember.m"
-            timestampString = "463269703.778557"
+            filePath = "SlackTeam/SlackListCollectionViewCell.m"
+            timestampString = "463293961.662916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "+_parseIndividualSlackMemberJson:manageContext:"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "-_setupView"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SlackTeam/SlackListCollectionViewCell.m"
+            timestampString = "463294061.312692"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "-updateConstraints"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

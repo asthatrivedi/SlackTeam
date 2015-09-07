@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Xx-FJ-aLc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -26,6 +27,7 @@
             <objects>
                 <collectionViewController title="Slack Team" id="sdH-CB-awR" customClass="SlackListCollectionViewController" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="MYr-sm-zPa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ch5-g3-1qA">
@@ -35,143 +37,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="OOj-bk-9hr" customClass="SlackListCollectionViewCell">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionCell" id="OOj-bk-9hr">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="234" height="210"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slack-icon-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="IRB-JZ-cjW">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Real Name" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6A-1d-ldJ">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="mFq-p9-Dvh"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="mFq-p9-Dvh"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=compact-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="mFq-p9-Dvh"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORF-9F-jzY">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="SfT-IX-9M3"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="SfT-IX-9M3"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=compact-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="SfT-IX-9M3"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4V-1Z-WTb">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="8cg-sD-BCE"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="8cg-sD-BCE"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=compact-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="8cg-sD-BCE"/>
-                                                </mask>
-                                            </variation>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstItem="IRB-JZ-cjW" firstAttribute="top" secondItem="OOj-bk-9hr" secondAttribute="topMargin" constant="-8" id="1nJ-Gb-jat"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="IRB-JZ-cjW" secondAttribute="bottom" constant="-8" id="2QD-cB-Lb0"/>
-                                    <constraint firstItem="ORF-9F-jzY" firstAttribute="leading" secondItem="OOj-bk-9hr" secondAttribute="leadingMargin" id="7rU-Uj-TeG"/>
-                                    <constraint firstItem="p4V-1Z-WTb" firstAttribute="top" secondItem="OOj-bk-9hr" secondAttribute="topMargin" id="DKM-Hu-L6s"/>
-                                    <constraint firstItem="ORF-9F-jzY" firstAttribute="trailing" secondItem="OOj-bk-9hr" secondAttribute="trailingMargin" id="HKC-Gx-1aO"/>
-                                    <constraint firstItem="p4V-1Z-WTb" firstAttribute="leading" secondItem="OOj-bk-9hr" secondAttribute="leadingMargin" id="SPa-AK-ARx"/>
-                                    <constraint firstItem="D6A-1d-ldJ" firstAttribute="leading" secondItem="OOj-bk-9hr" secondAttribute="leadingMargin" id="ers-u0-GwD"/>
-                                    <constraint firstItem="IRB-JZ-cjW" firstAttribute="leading" secondItem="OOj-bk-9hr" secondAttribute="leadingMargin" constant="-8" id="fEG-ez-J5A"/>
-                                    <constraint firstItem="ORF-9F-jzY" firstAttribute="top" secondItem="D6A-1d-ldJ" secondAttribute="bottom" constant="1" id="iIR-3u-m6I"/>
-                                    <constraint firstItem="D6A-1d-ldJ" firstAttribute="trailing" secondItem="OOj-bk-9hr" secondAttribute="trailingMargin" id="ieK-o9-4N4"/>
-                                    <constraint firstItem="ORF-9F-jzY" firstAttribute="bottom" secondItem="OOj-bk-9hr" secondAttribute="bottomMargin" id="sTp-oH-aQ0"/>
-                                    <constraint firstAttribute="trailingMargin" secondItem="IRB-JZ-cjW" secondAttribute="trailing" constant="-8" id="ulC-mW-qan"/>
-                                    <constraint firstItem="p4V-1Z-WTb" firstAttribute="trailing" secondItem="OOj-bk-9hr" secondAttribute="trailingMargin" id="wXL-2R-rwf"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="IRB-JZ-cjW"/>
-                                        <exclude reference="D6A-1d-ldJ"/>
-                                        <exclude reference="ORF-9F-jzY"/>
-                                        <exclude reference="p4V-1Z-WTb"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <exclude reference="1nJ-Gb-jat"/>
-                                        <exclude reference="2QD-cB-Lb0"/>
-                                        <exclude reference="fEG-ez-J5A"/>
-                                        <exclude reference="ulC-mW-qan"/>
-                                        <exclude reference="DKM-Hu-L6s"/>
-                                        <exclude reference="SPa-AK-ARx"/>
-                                        <exclude reference="wXL-2R-rwf"/>
-                                        <exclude reference="ers-u0-GwD"/>
-                                        <exclude reference="ieK-o9-4N4"/>
-                                        <exclude reference="7rU-Uj-TeG"/>
-                                        <exclude reference="HKC-Gx-1aO"/>
-                                        <exclude reference="iIR-3u-m6I"/>
-                                        <exclude reference="sTp-oH-aQ0"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact">
-                                    <mask key="subviews">
-                                        <include reference="IRB-JZ-cjW"/>
-                                        <include reference="D6A-1d-ldJ"/>
-                                        <include reference="ORF-9F-jzY"/>
-                                        <include reference="p4V-1Z-WTb"/>
-                                    </mask>
-                                    <mask key="constraints">
-                                        <include reference="1nJ-Gb-jat"/>
-                                        <include reference="2QD-cB-Lb0"/>
-                                        <include reference="fEG-ez-J5A"/>
-                                        <include reference="ulC-mW-qan"/>
-                                        <include reference="DKM-Hu-L6s"/>
-                                        <include reference="SPa-AK-ARx"/>
-                                        <include reference="wXL-2R-rwf"/>
-                                        <include reference="ers-u0-GwD"/>
-                                        <include reference="ieK-o9-4N4"/>
-                                        <include reference="7rU-Uj-TeG"/>
-                                        <include reference="HKC-Gx-1aO"/>
-                                        <include reference="iIR-3u-m6I"/>
-                                        <include reference="sTp-oH-aQ0"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="dispayName" destination="p4V-1Z-WTb" id="F44-YZ-Mxj"/>
-                                    <outlet property="profilePic" destination="IRB-JZ-cjW" id="QJz-al-pNs"/>
-                                    <outlet property="realName" destination="D6A-1d-ldJ" id="D0L-Ol-kmO"/>
-                                    <outlet property="title" destination="ORF-9F-jzY" id="6z3-1x-JLz"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -194,6 +67,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ep8-7b-DfU"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="GCp-Ai-SmS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y3x-fY-UBP">
@@ -222,10 +96,10 @@
                                 <exclude reference="fcR-9U-d8u"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="aWI-Pa-Dhx"/>
                                 <exclude reference="OkY-uf-och"/>
                                 <exclude reference="V9h-ah-jUA"/>
                                 <exclude reference="W2S-CL-YNm"/>
-                                <exclude reference="aWI-Pa-Dhx"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
@@ -234,10 +108,10 @@
                                 <include reference="fcR-9U-d8u"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="aWI-Pa-Dhx"/>
                                 <include reference="OkY-uf-och"/>
                                 <include reference="V9h-ah-jUA"/>
                                 <include reference="W2S-CL-YNm"/>
-                                <include reference="aWI-Pa-Dhx"/>
                             </mask>
                         </variation>
                     </view>
@@ -247,7 +121,4 @@
             <point key="canvasLocation" x="-6" y="316.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="slack-icon-logo.png" width="245" height="245"/>
-    </resources>
 </document>

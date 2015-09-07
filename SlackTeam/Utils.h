@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 extern NSString * const kSlackServiceAddedContentNotification;
-extern NSString * const kPhotoManagerContentUpdateNotification;
+extern NSString * const kPhotoDownloadedNotification;
 
 @interface Utils : NSObject
 

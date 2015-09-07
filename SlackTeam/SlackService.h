@@ -15,6 +15,6 @@
 + (instancetype)sharedService;
 
 - (void)pollSlackTeamListFromServer;
-- (SlackTeamViewModel *)getSlackList;
+- (SlackTeamViewModel *)slackList;
 
 @end

@@ -10,7 +10,7 @@
 
 @interface SlackTeamViewModel : NSObject
 
-@property (nonatomic, strong) NSArray *slackMembers;
+@property (nonatomic, strong) NSMutableDictionary *slackMembers;
 
 + (SlackTeamViewModel *)viewModelWithSlackMemberFetchObjects:(NSArray *)inFetchedObjects;
 

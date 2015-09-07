@@ -12,11 +12,6 @@
 
 @interface SlackListCollectionViewCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
-@property (weak, nonatomic) IBOutlet UILabel *dispayName;
-@property (weak, nonatomic) IBOutlet UILabel *realName;
-@property (weak, nonatomic) IBOutlet UILabel *title;
-
 - (void)setupViewWithSlackViewModel:(SlackMemberViewModel *)model;
 
 @end

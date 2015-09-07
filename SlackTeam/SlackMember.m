@@ -29,16 +29,19 @@ NSString * const kTitle = @"title";
 
 #pragma mark Public Methods
 
-+ (void)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context {
++ (NSArray *)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context {
     
+    NSMutableArray *members = [NSMutableArray array];
     for (NSDictionary *member in membersJson) {
-        [SlackMember _parseIndividualSlackMemberJson:member manageContext:context];
+        [members addObject:[SlackMember _parseIndividualSlackMemberJson:member manageContext:context]];
     }
+    
+    return members;
 }
 
 #pragma mark - Private Helper Methods
 
-+ (void)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson
++ (SlackMember *)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson
                                    manageContext:(NSManagedObjectContext *)context {
     
     // Fetch first to ensure there are no duplicate entries.
@@ -50,12 +53,14 @@ NSString * const kTitle = @"title";
     
     NSArray *results = [context executeFetchRequest:fetch error:&error];
     
+    SlackMember *member;
+    
     if ([results count] == 0) {
         
         // Add a new entry.
-        SlackMember *member =
-        (SlackMember *)[NSEntityDescription insertNewObjectForEntityForName:@"SlackMember"
-                                                     inManagedObjectContext:context];
+        member =
+            (SlackMember *)[NSEntityDescription insertNewObjectForEntityForName:@"SlackMember"
+                                                         inManagedObjectContext:context];
         
         member.memberId = memberJson[kMemberID];
         member.name = memberJson[kDisplayName];
@@ -67,6 +72,11 @@ NSString * const kTitle = @"title";
         member.imageThumbnail = profileDict[kProfilePicThumbnail];
         member.largeImage = profileDict[kProfilePicOriginal];
     }
+    else {
+        member = [results firstObject];
+    }
+    
+    return member;
 }
 
 

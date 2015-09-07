@@ -11,6 +11,7 @@
 
 #import "AppDelegate.h"
 #import "SlackMember.h"
+#import "SlackMemberViewModel.h"
 #import "Utils.h"
 
 
@@ -24,6 +25,16 @@ NSString * const kProfilePicThumbnailKey = @"image_192";
 NSString * const kRealNameKey = @"real_name";
 NSString * const kTitleKey = @"title";
 
+typedef void (^ProfilePictureDownloadingCompletionBlock)(UIImage *image, NSError *error);
+typedef void (^BasicCompletionBlock)(NSError *error);
+
+@interface SlackService ()
+
+@property (nonatomic, strong) NSArray *slackTeamModelList;
+@property (nonatomic, strong) SlackTeamViewModel *teamViewModel;
+@property (nonatomic, strong) dispatch_queue_t concurrentQueue;
+
+@end
 
 @implementation SlackService
 
@@ -36,6 +47,8 @@ NSString * const kTitleKey = @"title";
     
     dispatch_once(&dispatchOnce, ^{
         sharedService = [[SlackService alloc] init];
+        sharedService.concurrentQueue = dispatch_queue_create("com.astha.SlackTeam.profilePicQueue",
+                                                              DISPATCH_QUEUE_CONCURRENT);
     });
     
     return sharedService;
@@ -58,8 +71,8 @@ NSString * const kTitleKey = @"title";
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SlackMember parseSlackMembersJson:responseObject[kMembersKey]
-                             manageContext:managedContext];
+        self.slackTeamModelList = [SlackMember parseSlackMembersJson:responseObject[kMembersKey]
+                                                       manageContext:managedContext];
         
         NSError *error = nil;
         
@@ -69,9 +82,16 @@ NSString * const kTitleKey = @"title";
             NSLog(@"error %@", error.description);
         }
         else {
+            self.teamViewModel = [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:self.slackTeamModelList];
             [self _contentAddedNotification];
+            [self _downloadImagesFromServer:^(NSError *error) {
+                if (error)
+                    NSLog(@"image download error");
+                else {
+                    [self _contentAddedNotification];
+                }
+            }];
             NSLog(@"success");
-            
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -81,24 +101,102 @@ NSString * const kTitleKey = @"title";
     [operation start];
 }
 
-- (SlackTeamViewModel *)getSlackList {
+- (void)_downloadImagesFromServer:(BasicCompletionBlock)completionBlock {
     
-    __weak NSManagedObjectContext *managedContext =
-        ((AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+    __block NSError *inError = nil;
+    dispatch_group_t downloadGroup = dispatch_group_create();
     
-    NSError *error = nil;
+    __block UIImage *tempImage = nil;
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SlackMember"
-                                              inManagedObjectContext:managedContext];
-    [fetchRequest setEntity:entity];
-    NSArray *fetchedObjects = [managedContext executeFetchRequest:fetchRequest error:&error];
+    NSInteger index = 0;
     
-    return [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:fetchedObjects];
+    for (SlackMember *inMember in self.slackTeamModelList) {
+        
+        dispatch_group_enter(downloadGroup);
+        
+        [self _downloadProfilePictureUrl:inMember.largeImage withCompletion:^(UIImage *image, NSError *error) {
+            if (!error) {
+                tempImage = image;
+                [self _setProfilePictureToViewModel:tempImage forKey:index];
+            }
+            else {
+                dispatch_group_leave(downloadGroup);
+            }
+            
+        }];
+        index++;
+    }
+    
+    dispatch_group_notify(downloadGroup, dispatch_get_main_queue(), ^{
+        if (completionBlock) {
+            completionBlock(inError);
+        }
+    });
 }
+
+#pragma mark getter/setters
+
+- (SlackTeamViewModel *)slackList {
+    return self.teamViewModel;
+}
+
+- (void)_setProfilePictureToViewModel:(UIImage *)image forKey:(NSInteger)indexKey {
+    if (image) {
+        dispatch_barrier_async(self.concurrentQueue, ^{
+            
+            SlackMemberViewModel *inMember =
+                [self.teamViewModel.slackMembers objectForKey:[NSString stringWithFormat:@"%ld",indexKey]];
+            inMember.profilePic = image;
+            
+            if (inMember)
+                [self.teamViewModel.slackMembers setObject:inMember
+                                                    forKey:[NSString stringWithFormat:@"%ld",indexKey]];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self _contentAddedNotification];
+                NSLog(@"test");
+            });
+        });
+    }
+
+}
+
 
 #pragma mark - Private Helper Methods
 
+
+- (void)_downloadProfilePictureUrl:(NSString *)url
+                    withCompletion:(ProfilePictureDownloadingCompletionBlock)completionBlock {
+    
+    __block NSError *error = nil;
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    AFHTTPRequestOperation *requestOperation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    requestOperation.responseSerializer = [AFImageResponseSerializer serializer];
+    
+    [requestOperation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"Response: %@", responseObject);
+        completionBlock(responseObject, error);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Image error: %@", error);
+        completionBlock(nil, error);
+    }];
+    [requestOperation start];
+}
+
+- (void)_photoDownloadedNotification {
+    static NSNotification *notification = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        notification = [NSNotification notificationWithName:kPhotoDownloadedNotification object:nil];
+    });
+    
+    [[NSNotificationQueue defaultQueue] enqueueNotification:notification
+                                               postingStyle:NSPostASAP
+                                               coalesceMask:NSNotificationCoalescingOnName
+                                                   forModes:nil];
+}
 
 - (void)_contentAddedNotification {
     static NSNotification *notification = nil;

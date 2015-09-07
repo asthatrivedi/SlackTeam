@@ -38,9 +38,13 @@ static NSString * const reuseIdentifier = @"CollectionCell";
                                                  name:kSlackServiceAddedContentNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleCoreDataChangeNotification)
-                                                 name:kPhotoManagerContentUpdateNotification
+                                             selector:@selector(handlePhotoDownlaodedNotification:)
+                                                 name:kPhotoDownloadedNotification
                                                object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 /*
@@ -67,7 +71,11 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     SlackListCollectionViewCell *cell = (SlackListCollectionViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    [cell setupViewWithSlackViewModel:[self.slackTeamViewModel.slackMembers objectAtIndex:indexPath.row]];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    cell.layer.cornerRadius = 5.f;
+    
+    NSString *key = [NSString stringWithFormat:@"%ld",indexPath.row];
+    [cell setupViewWithSlackViewModel:[self.slackTeamViewModel.slackMembers objectForKey:key]];
     
     return cell;
 }
@@ -88,8 +96,12 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 #pragma mark Notification Handlers
 
+- (void)handlePhotoDownlaodedNotification:(NSNotification *)notif {
+    
+}
+
 - (void)handleCoreDataChangeNotification {
-    self.slackTeamViewModel = [[SlackService sharedService] getSlackList];
+    self.slackTeamViewModel = [[SlackService sharedService] slackList];
     [self.collectionView reloadData];
 }
 

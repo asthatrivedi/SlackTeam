@@ -9,7 +9,7 @@
 #import "Utils.h"
 
 NSString * const kSlackServiceAddedContentNotification = @"com.astha.SlackTeam.AddedContent";
-NSString * const kPhotoManagerContentUpdateNotification = @"com.astha.SlackTeam.PhotoMangerContentUpdate";
+NSString * const kPhotoDownloadedNotification = @"com.astha.SlackTeam.PhotoDownloaded";
 
 @implementation Utils
 

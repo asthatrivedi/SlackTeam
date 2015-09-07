@@ -21,11 +21,14 @@
 
 #pragma mark - Private Helper Methods
 
-+ (NSArray *)_parseFetchObjectsIntoViewModel:(NSArray *)fetchObjects {
++ (NSMutableDictionary *)_parseFetchObjectsIntoViewModel:(NSArray *)fetchObjects {
     
-    NSMutableArray *viewModelObjects = [NSMutableArray array];
+    NSMutableDictionary *viewModelObjects = [NSMutableDictionary dictionary];
+    NSInteger index = 0;
     for (SlackMember *inMember in fetchObjects) {
-        [viewModelObjects addObject:[SlackMemberViewModel viewModelWithSlackMember:inMember]];
+        [viewModelObjects setObject:[SlackMemberViewModel viewModelWithSlackMember:inMember]
+                             forKey:[NSString stringWithFormat:@"%ld",index]];
+        index++;
     }
     
     return viewModelObjects;

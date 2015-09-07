@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "SlackMember.h"
 
 @interface SlackMemberViewModel : NSObject
 
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSString * realName;
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, strong) NSString * name;
+@property (nonatomic, strong) NSString * realName;
+@property (nonatomic, strong) NSString * title;
+@property (nonatomic, strong) UIImage *profilePic;
 
 + (SlackMemberViewModel *)viewModelWithSlackMember:(SlackMember *)slackMember;
 
