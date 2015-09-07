@@ -119,9 +119,7 @@ typedef void (^BasicCompletionBlock)(NSError *error);
                 tempImage = image;
                 [self _setProfilePictureToViewModel:tempImage forKey:index];
             }
-            else {
-                dispatch_group_leave(downloadGroup);
-            }
+            dispatch_group_leave(downloadGroup);
             
         }];
         index++;
@@ -148,14 +146,14 @@ typedef void (^BasicCompletionBlock)(NSError *error);
                 [self.teamViewModel.slackMembers objectForKey:[NSString stringWithFormat:@"%ld",indexKey]];
             inMember.profilePic = image;
             
-            if (inMember)
+            if (inMember) {
                 [self.teamViewModel.slackMembers setObject:inMember
                                                     forKey:[NSString stringWithFormat:@"%ld",indexKey]];
             
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self _contentAddedNotification];
-                NSLog(@"test");
-            });
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self _photoDownloadedNotificationAtIndex:[NSString stringWithFormat:@"%ld",indexKey]];
+                });
+            }
         });
     }
 
@@ -185,12 +183,11 @@ typedef void (^BasicCompletionBlock)(NSError *error);
     [requestOperation start];
 }
 
-- (void)_photoDownloadedNotification {
-    static NSNotification *notification = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        notification = [NSNotification notificationWithName:kPhotoDownloadedNotification object:nil];
-    });
+- (void)_photoDownloadedNotificationAtIndex:(NSString *)indexKey {
+    NSNotification *notification = nil;
+    notification = [NSNotification notificationWithName:kPhotoDownloadedNotification
+                                                 object:nil
+                                               userInfo:@{@"key" : indexKey}];
     
     [[NSNotificationQueue defaultQueue] enqueueNotification:notification
                                                postingStyle:NSPostASAP

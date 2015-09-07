@@ -38,7 +38,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
                                                  name:kSlackServiceAddedContentNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handlePhotoDownlaodedNotification:)
+                                             selector:@selector(_handlePhotoDownlaodedNotification:)
                                                  name:kPhotoDownloadedNotification
                                                object:nil];
 }
@@ -46,16 +46,6 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -96,8 +86,15 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 
 #pragma mark Notification Handlers
 
-- (void)handlePhotoDownlaodedNotification:(NSNotification *)notif {
+- (void)_handlePhotoDownlaodedNotification:(NSNotification *)notif {
+    NSDictionary *userInfo = [notif userInfo];
     
+    NSString *key = userInfo[@"key"];
+    
+    NSLog(@"key: %@", key);
+    
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[key integerValue] inSection:0];
+    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }
 
 - (void)handleCoreDataChangeNotification {
