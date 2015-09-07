@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Xx-FJ-aLc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -80,6 +81,19 @@
                             </navigationBar>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="slack-icon-logo.png" translatesAutoresizingMaskIntoConstraints="NO" id="PtL-bg-Hms">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="159" id="PU0-0F-Y7u"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="PU0-0F-Y7u"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="PU0-0F-Y7u"/>
+                                    </mask>
+                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DisplayName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5MP-pd-rKb">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
@@ -148,7 +162,6 @@
                             <constraint firstItem="Kzr-5c-uVb" firstAttribute="leading" secondItem="GCp-Ai-SmS" secondAttribute="leadingMargin" id="OtZ-Vh-50K"/>
                             <constraint firstAttribute="trailingMargin" secondItem="PtL-bg-Hms" secondAttribute="trailing" constant="-16" id="P6u-yy-zDO"/>
                             <constraint firstItem="fcR-9U-d8u" firstAttribute="top" secondItem="GCp-Ai-SmS" secondAttribute="top" id="W67-P3-dGT"/>
-                            <constraint firstItem="ep8-7b-DfU" firstAttribute="top" secondItem="PtL-bg-Hms" secondAttribute="bottom" constant="197" id="gJ6-AN-TN7"/>
                             <constraint firstItem="PtL-bg-Hms" firstAttribute="leading" secondItem="GCp-Ai-SmS" secondAttribute="leadingMargin" constant="-16" id="h3I-xS-thg"/>
                             <constraint firstItem="Kzr-5c-uVb" firstAttribute="top" secondItem="5MP-pd-rKb" secondAttribute="bottom" constant="8" id="rru-DN-2mW"/>
                             <constraint firstItem="SdF-gB-ndk" firstAttribute="leading" secondItem="GCp-Ai-SmS" secondAttribute="leadingMargin" id="vlT-6e-1ab"/>
@@ -163,12 +176,6 @@
                                 <exclude reference="SdF-gB-ndk"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5O6-0l-A1k"/>
-                                <exclude reference="6ex-NX-ix4"/>
-                                <exclude reference="W67-P3-dGT"/>
-                                <exclude reference="LMg-Wh-SC6"/>
-                                <exclude reference="P6u-yy-zDO"/>
-                                <exclude reference="h3I-xS-thg"/>
                                 <exclude reference="Ade-fs-B61"/>
                                 <exclude reference="DQz-Qy-FDm"/>
                                 <exclude reference="xaN-yV-Tsu"/>
@@ -180,7 +187,12 @@
                                 <exclude reference="MNW-KF-bte"/>
                                 <exclude reference="MQQ-3M-TQV"/>
                                 <exclude reference="vlT-6e-1ab"/>
-                                <exclude reference="gJ6-AN-TN7"/>
+                                <exclude reference="5O6-0l-A1k"/>
+                                <exclude reference="6ex-NX-ix4"/>
+                                <exclude reference="W67-P3-dGT"/>
+                                <exclude reference="LMg-Wh-SC6"/>
+                                <exclude reference="P6u-yy-zDO"/>
+                                <exclude reference="h3I-xS-thg"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
@@ -192,12 +204,6 @@
                                 <include reference="SdF-gB-ndk"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5O6-0l-A1k"/>
-                                <include reference="6ex-NX-ix4"/>
-                                <include reference="W67-P3-dGT"/>
-                                <include reference="LMg-Wh-SC6"/>
-                                <include reference="P6u-yy-zDO"/>
-                                <include reference="h3I-xS-thg"/>
                                 <include reference="Ade-fs-B61"/>
                                 <include reference="DQz-Qy-FDm"/>
                                 <include reference="xaN-yV-Tsu"/>
@@ -209,7 +215,12 @@
                                 <include reference="MNW-KF-bte"/>
                                 <include reference="MQQ-3M-TQV"/>
                                 <include reference="vlT-6e-1ab"/>
-                                <include reference="gJ6-AN-TN7"/>
+                                <include reference="5O6-0l-A1k"/>
+                                <include reference="6ex-NX-ix4"/>
+                                <include reference="W67-P3-dGT"/>
+                                <include reference="LMg-Wh-SC6"/>
+                                <include reference="P6u-yy-zDO"/>
+                                <include reference="h3I-xS-thg"/>
                             </mask>
                         </variation>
                     </view>

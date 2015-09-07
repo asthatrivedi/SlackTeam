@@ -17,6 +17,7 @@ NSString * const kProfilePicOriginal = @"image_original";
 NSString * const kProfilePicThumbnail = @"image_192";
 NSString * const kRealName = @"real_name";
 NSString * const kTitle = @"title";
+NSString * const kEmail = @"email";
 
 @implementation SlackMember
 
@@ -24,8 +25,8 @@ NSString * const kTitle = @"title";
 @dynamic name;
 @dynamic realName;
 @dynamic title;
-@dynamic imageThumbnail;
 @dynamic largeImage;
+@dynamic email;
 
 #pragma mark Public Methods
 
@@ -69,8 +70,8 @@ NSString * const kTitle = @"title";
         
         NSDictionary *profileDict = memberJson[kProfile];
         
-        member.imageThumbnail = profileDict[kProfilePicThumbnail];
         member.largeImage = profileDict[kProfilePicOriginal];
+        member.email = profileDict[kEmail];
     }
     else {
         member = [results firstObject];
