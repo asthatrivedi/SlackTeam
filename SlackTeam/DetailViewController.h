@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SlackMemberViewModel.h"
 
 @interface DetailViewController : UIViewController
+
+- (void)setupSlackMember:(SlackMemberViewModel *)inViewModel;
 
 @end

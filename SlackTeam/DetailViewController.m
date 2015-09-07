@@ -10,28 +10,36 @@
 
 @interface DetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (weak, nonatomic) IBOutlet UILabel *displayName;
+@property (weak, nonatomic) IBOutlet UILabel *realName;
+@property (weak, nonatomic) IBOutlet UILabel *jobTitle;
+
+@property (nonatomic, strong) SlackMemberViewModel *viewModel;
+
 @end
 
 @implementation DetailViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = self.viewModel.name;
+    
+    [self _setupView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)_setupView {
+    self.profilePic.image = self.viewModel.profilePic;
+    self.displayName.text = self.viewModel.name;
+    self.realName.text = self.viewModel.realName;
+    self.jobTitle.text = self.viewModel.title;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setupSlackMember:(SlackMemberViewModel *)inViewModel {
+    self.viewModel = inViewModel;
 }
-*/
+
 
 @end

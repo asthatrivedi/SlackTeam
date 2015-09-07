@@ -8,6 +8,7 @@
 
 #import "SlackListCollectionViewController.h"
 
+#import "DetailViewController.h"
 #import "SlackListCollectionViewCell.h"
 #import "SlackService.h"
 #import "SlackTeamViewModel.h"
@@ -16,6 +17,7 @@
 @interface SlackListCollectionViewController ()
 
 @property (nonatomic, strong) SlackTeamViewModel *slackTeamViewModel;
+@property (nonatomic, assign) NSInteger selectedIndex;
 
 @end
 
@@ -34,7 +36,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     [self.collectionView registerClass:[SlackListCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(handleCoreDataChangeNotification)
+                                             selector:@selector(_handleCoreDataChangeNotification)
                                                  name:kSlackServiceAddedContentNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -48,6 +50,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 }
 
 #pragma mark <UICollectionViewDataSource>
+
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
@@ -70,6 +73,16 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     return cell;
 }
 
+#pragma mark <UICollectionViewDelegate>
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    self.selectedIndex = indexPath.row;
+    [self performSegueWithIdentifier:@"pushDetail" sender:self];
+}
+
+
 #pragma mark <UICollectionViewDelegateFlowLayout>
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -84,7 +97,24 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     return UIEdgeInsetsMake(20, 20, 30, 20);
 }
 
+#pragma mark Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue destinationViewController] isKindOfClass:[DetailViewController class]]) {
+        DetailViewController *detailVC = [segue destinationViewController];
+   
+        NSString *key = [NSString stringWithFormat:@"%ld",self.selectedIndex];
+        [detailVC setupSlackMember:[self.slackTeamViewModel.slackMembers objectForKey:key]];
+    }
+}
+
 #pragma mark Notification Handlers
+
+- (void)_handleCoreDataChangeNotification {
+    self.slackTeamViewModel = [[SlackService sharedService] slackList];
+    [self.collectionView reloadData];
+}
 
 - (void)_handlePhotoDownlaodedNotification:(NSNotification *)notif {
     NSDictionary *userInfo = [notif userInfo];
@@ -97,9 +127,5 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }
 
-- (void)handleCoreDataChangeNotification {
-    self.slackTeamViewModel = [[SlackService sharedService] slackList];
-    [self.collectionView reloadData];
-}
 
 @end
