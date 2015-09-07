@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString * realName;
 @property (nonatomic, strong) NSString * title;
 @property (nonatomic, strong) UIImage *profilePic;
+@property (nonatomic, strong) NSString *email;
 
 + (SlackMemberViewModel *)viewModelWithSlackMember:(SlackMember *)slackMember;
 

@@ -122,7 +122,8 @@ static NSString * const reuseIdentifier = @"CollectionCell";
     NSString *key = userInfo[@"key"];
     
     NSLog(@"key: %@", key);
-    
+    self.slackTeamViewModel = [[SlackService sharedService] slackList];
+//    [self.collectionView reloadData];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[key integerValue] inSection:0];
     [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }

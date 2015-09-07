@@ -17,6 +17,7 @@
     viewModel.name = slackMember.name;
     viewModel.realName = slackMember.realName;
     viewModel.title = slackMember.title;
+    viewModel.email = slackMember.email;
     
     return viewModel;
 }

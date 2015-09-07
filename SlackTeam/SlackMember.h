@@ -15,8 +15,8 @@
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * realName;
 @property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSString * imageThumbnail;
 @property (nonatomic, retain) NSString * largeImage;
+@property (nonatomic, retain) NSString * email;
 
 + (NSArray *)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context;
 
