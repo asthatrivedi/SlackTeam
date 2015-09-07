@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SlackTeam/SlackListCollectionViewController.m"
-            timestampString = "463347826.622029"
+            timestampString = "463356713.480565"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133">
+            startingLineNumber = "134"
+            endingLineNumber = "134">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -136,22 +136,6 @@
             startingLineNumber = "188"
             endingLineNumber = "188"
             landmarkName = "-_photoDownloadedNotificationAtIndex:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SlackTeam/SlackListCollectionViewController.m"
-            timestampString = "463347660.501979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "120"
-            endingLineNumber = "120"
-            landmarkName = "-_handlePhotoDownlaodedNotification:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
