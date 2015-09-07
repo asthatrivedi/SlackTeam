@@ -187,7 +187,7 @@ typedef void (^BasicCompletionBlock)(NSError *error);
     NSNotification *notification = nil;
     notification = [NSNotification notificationWithName:kPhotoDownloadedNotification
                                                  object:nil
-                                               userInfo:@{@"key" : indexKey}];
+                                               userInfo:@{kIndexKey : indexKey}];
     
     [[NSNotificationQueue defaultQueue] enqueueNotification:notification
                                                postingStyle:NSPostASAP
