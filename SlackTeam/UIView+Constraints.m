@@ -10,33 +10,6 @@
 
 @implementation UIView (Constraints)
 
-- (void)addSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview
-{
-	[self addSubview:subview];
-
-	[self addBoundingConstraintsEqualToParentToSubview:subview];
-}
-
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview belowView:(UIView *)referenceView
-{
-	[self insertSubview:subview belowSubview:referenceView];
-
-	[self addBoundingConstraintsEqualToParentToSubview:subview];
-}
-
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview aboveView:(UIView *)referenceView
-{
-	[self insertSubview:subview aboveSubview:referenceView];
-
-	[self addBoundingConstraintsEqualToParentToSubview:subview];
-}
-
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview atIndex:(NSInteger)index
-{
-	[self insertSubview:subview atIndex:index];
-
-	[self addBoundingConstraintsEqualToParentToSubview:subview];
-}
 
 - (void)addBoundingConstraintsEqualToParentToSubview:(UIView *)subview
 {
@@ -134,37 +107,9 @@
 																	   multiplier:1
 																		 constant:height];
 
-	[self _assertConstraintDoesNotExist:heightConstraint];
 
 	[self addConstraint:heightConstraint];
 }
 
-- (void)_assertConstraintDoesNotExist:(NSLayoutConstraint *)constraint
-{
-#if INTERNAL_BUILD
-	for (NSLayoutConstraint *curConstraint in self.constraints)
-	{
-		BOOL equal = curConstraint.firstItem == constraint.firstItem &&
-		curConstraint.firstAttribute == constraint.firstAttribute &&
-		curConstraint.relation == constraint.relation &&
-		curConstraint.secondItem == constraint.secondItem &&
-		curConstraint.secondAttribute == constraint.secondAttribute &&
-		curConstraint.multiplier == constraint.multiplier;
-
-		NSAssert(equal == NO, @"View %@ already has constraint", self);
-	}
-#endif
-}
-
-- (NSLayoutConstraint *)_boundingConstraintToSuperviewWithAttribute:(NSLayoutAttribute)attribute constant:(CGFloat)constant
-{
-	return [NSLayoutConstraint constraintWithItem:self
-										attribute:attribute
-										relatedBy:NSLayoutRelationEqual
-										   toItem:self.superview
-										attribute:attribute
-									   multiplier:1
-										 constant:constant];
-}
 
 @end

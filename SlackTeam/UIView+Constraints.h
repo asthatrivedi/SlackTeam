@@ -12,41 +12,6 @@
 @interface UIView (Constraints)
 
 /**
- * Adds the view as a subview and sets the child's top, right, bottom, and left constraints equal to the
- * receiver's top, right, bottom, and left.
- *
- * @param subview  The view to be added as a subview.
- */
-- (void)addSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview;
-
-/**
- * Inserts the view as a subview below the reference view and sets the child's top, right, bottom, and
- * left constraints equal to the receiver's top, right, bottom, and left.
- *
- * @param subview  The view to be added as a subview.
- * @param referenceView  The view below which the new view should be added.
- */
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview belowView:(UIView *)referenceView;
-
-/**
- * Inserts the view as a subview above the reference view and sets the child's top, right, bottom, and
- * left constraints equal to the receiver's top, right, bottom, and left.
- *
- * @param subview  The view to be added as a subview.
- * @param referenceView  The view below which the new view should be added.
- */
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview aboveView:(UIView *)referenceView;
-
-/**
- * Inserts the view as a subview at the indicated index and sets the child's top, right, bottom, and
- * left constraints equal to the receiver's top, right, bottom, and left.
- *
- * @param subview  The view to be added as a subview.
- * @param referenceView  The view below which the new view should be added.
- */
-- (void)insertSubviewAndSetBoundingConstraintsEqualToParent:(UIView *)subview atIndex:(NSInteger)index;
-
-/**
  * Sets the child's top, right, bottom, and left constraints equal to the receiver's top, right,
  * bottom, and left.
  *
