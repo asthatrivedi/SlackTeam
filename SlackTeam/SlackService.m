@@ -77,22 +77,29 @@ typedef void (^BasicCompletionBlock)(NSError *error);
         NSError *error = nil;
         
         [managedContext save:&error];
-        
+        BOOL isError;
         if (error) {
             NSLog(@"error %@", error.description);
+            isError = YES;
         }
         else {
+            isError = NO;
             self.teamViewModel = [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:self.slackTeamModelList];
-            [self _contentAddedNotification];
             [self _downloadImagesFromServer:^(NSError *error) {
-                if (error)
+                BOOL isError;
+                if (error) {
                     NSLog(@"image download error");
-                else {
-                    [self _contentAddedNotification];
+                    isError = YES;
                 }
+                else {
+                    isError = NO;
+                }
+                [self _contentAddedNotificationIsError:isError];
             }];
             NSLog(@"success");
         }
+        [self _contentAddedNotificationIsError:isError];
+
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error!!");
@@ -195,11 +202,17 @@ typedef void (^BasicCompletionBlock)(NSError *error);
                                                    forModes:nil];
 }
 
-- (void)_contentAddedNotification {
+- (void)_contentAddedNotificationIsError:(BOOL)isError {
     static NSNotification *notification = nil;
     static dispatch_once_t onceToken;
+    NSString *error = isError ? @"YES" : @"NO";
+
     dispatch_once(&onceToken, ^{
-        notification = [NSNotification notificationWithName:kSlackServiceAddedContentNotification object:nil];
+        
+        
+        notification = [NSNotification notificationWithName:kSlackServiceAddedContentNotification
+                                                     object:nil
+                                                   userInfo:@{kErrorKey : error}];
     });
     
     [[NSNotificationQueue defaultQueue] enqueueNotification:notification

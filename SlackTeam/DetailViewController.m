@@ -8,6 +8,7 @@
 
 #import "DetailViewController.h"
 
+#import <QuartzCore/QuartzCore.h>
 #import "Utils.h"
 
 CGFloat const kLabelHeight = 25;
@@ -31,6 +32,11 @@ CGFloat const kLabelHeight = 25;
     
     self.title = self.viewModel.name;
     self.view.backgroundColor = kSystemTintColor;
+    
+    if (self.profilePic) {
+        self.profilePic.layer.cornerRadius = 5.f;
+        self.profilePic.clipsToBounds = YES;
+    }
     
     [self _setupDataInView];
 }

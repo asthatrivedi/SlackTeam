@@ -11,6 +11,7 @@
 extern NSString * const kSlackServiceAddedContentNotification;
 extern NSString * const kPhotoDownloadedNotification;
 extern NSString * const kIndexKey;
+extern NSString * const kErrorKey;
 
 #define kSystemTintColor [UIColor colorWithRed:60.f/255.f green:42.f/255.f blue:59.f/255.f alpha:1.f]
 

@@ -19,13 +19,15 @@
 
 @property (nonatomic, strong) SlackTeamViewModel *slackTeamViewModel;
 @property (nonatomic, assign) NSInteger selectedIndex;
+@property (weak, nonatomic) IBOutlet UIView *statusView;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 
 @end
 
 @implementation SlackListCollectionViewController
 
 static NSString * const reuseIdentifier = @"CollectionCell";
-static NSString * const kTitle = @"Slack Team";
+static NSString * const kTitle = @"Team";
 static NSString * const kDetailIdentifier = @"pushDetail";
 
 
@@ -40,7 +42,7 @@ static NSString * const kDetailIdentifier = @"pushDetail";
 
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_handleCoreDataChangeNotification)
+                                             selector:@selector(_handleCoreDataChangeNotification:)
                                                  name:kSlackServiceAddedContentNotification
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -93,7 +95,7 @@ static NSString * const kDetailIdentifier = @"pushDetail";
 
     CGFloat width = [[UIScreen mainScreen] bounds].size.width;
     
-    return CGSizeMake(width - 40, 200);
+    return CGSizeMake(width - 40, 250);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
@@ -115,9 +117,20 @@ static NSString * const kDetailIdentifier = @"pushDetail";
 
 #pragma mark Notification Handlers
 
-- (void)_handleCoreDataChangeNotification {
-    self.slackTeamViewModel = [[SlackService sharedService] slackList];
-    [self.collectionView reloadData];
+- (void)_handleCoreDataChangeNotification:(NSNotification *)notif {
+    NSDictionary *userInfo = [notif userInfo];
+    
+    NSString *isError = userInfo[kErrorKey];
+    if ([isError isEqualToString:@"YES"]) {
+        self.statusView.hidden = NO;
+        self.statusLabel.text = @"Connectivity Issue!!";
+        
+    }
+    else {
+        self.statusView.hidden = YES;
+        self.slackTeamViewModel = [[SlackService sharedService] slackList];
+        [self.collectionView reloadData];
+    }
 }
 
 - (void)_handlePhotoDownlaodedNotification:(NSNotification *)notif {

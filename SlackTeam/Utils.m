@@ -12,6 +12,7 @@
 NSString * const kSlackServiceAddedContentNotification = @"com.astha.SlackTeam.AddedContent";
 NSString * const kPhotoDownloadedNotification = @"com.astha.SlackTeam.PhotoDownloaded";
 NSString * const kIndexKey = @"key";
+NSString * const kErrorKey = @"isError";
 
 @implementation Utils
 
