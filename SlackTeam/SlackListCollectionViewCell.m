@@ -8,8 +8,6 @@
 
 #import "SlackListCollectionViewCell.h"
 
-#import "UIView+Constraints.h"
-
 
 CGFloat const kLabelDefaultHeight = 25;
 

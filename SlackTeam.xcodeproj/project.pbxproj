@@ -14,8 +14,6 @@
 		E04E9BA31B9C11FF003E6959 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA21B9C11FF003E6959 /* Utils.m */; };
 		E04E9BA61B9CE8BF003E6959 /* SlackMemberViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */; };
 		E04E9BA91B9CEF8C003E6959 /* SlackTeamViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BA81B9CEF8C003E6959 /* SlackTeamViewModel.m */; };
-		E04E9BE71B9D3E55003E6959 /* UIView+Constraints.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BE51B9D3E55003E6959 /* UIView+Constraints.m */; };
-		E04E9BEA1B9D3FCC003E6959 /* Sides.m in Sources */ = {isa = PBXBuildFile; fileRef = E04E9BE91B9D3FCC003E6959 /* Sides.m */; };
 		E052E1681B915D1900847277 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E1671B915D1900847277 /* main.m */; };
 		E052E16B1B915D1900847277 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E052E16A1B915D1900847277 /* AppDelegate.m */; };
 		E052E1711B915D1900847277 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E052E16F1B915D1900847277 /* Main.storyboard */; };
@@ -53,10 +51,6 @@
 		E04E9BA51B9CE8BF003E6959 /* SlackMemberViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackMemberViewModel.m; sourceTree = "<group>"; };
 		E04E9BA71B9CEF8C003E6959 /* SlackTeamViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SlackTeamViewModel.h; sourceTree = "<group>"; };
 		E04E9BA81B9CEF8C003E6959 /* SlackTeamViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SlackTeamViewModel.m; sourceTree = "<group>"; };
-		E04E9BE41B9D3E55003E6959 /* UIView+Constraints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Constraints.h"; sourceTree = "<group>"; };
-		E04E9BE51B9D3E55003E6959 /* UIView+Constraints.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Constraints.m"; sourceTree = "<group>"; };
-		E04E9BE81B9D3FCC003E6959 /* Sides.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sides.h; sourceTree = "<group>"; };
-		E04E9BE91B9D3FCC003E6959 /* Sides.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Sides.m; sourceTree = "<group>"; };
 		E052E1621B915D1900847277 /* SlackTeam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlackTeam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E052E1661B915D1900847277 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E052E1671B915D1900847277 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -124,17 +118,6 @@
 			name = ViewModels;
 			sourceTree = "<group>";
 		};
-		E04E9BEC1B9E293A003E6959 /* UI Utils */ = {
-			isa = PBXGroup;
-			children = (
-				E04E9BE81B9D3FCC003E6959 /* Sides.h */,
-				E04E9BE91B9D3FCC003E6959 /* Sides.m */,
-				E04E9BE41B9D3E55003E6959 /* UIView+Constraints.h */,
-				E04E9BE51B9D3E55003E6959 /* UIView+Constraints.m */,
-			);
-			name = "UI Utils";
-			sourceTree = "<group>";
-		};
 		E04E9BED1B9E2957003E6959 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,7 +159,6 @@
 				E052E18E1B9168BE00847277 /* DetailViewController.h */,
 				E052E18F1B9168BE00847277 /* DetailViewController.m */,
 				E04E9BEB1B9E2921003E6959 /* ViewModels */,
-				E04E9BEC1B9E293A003E6959 /* UI Utils */,
 				E052E1911B92102D00847277 /* SlackService.h */,
 				E052E1921B92102D00847277 /* SlackService.m */,
 				E04E9BA11B9C11FF003E6959 /* Utils.h */,
@@ -363,8 +345,6 @@
 				E052E1681B915D1900847277 /* main.m in Sources */,
 				E04E9BA61B9CE8BF003E6959 /* SlackMemberViewModel.m in Sources */,
 				E052E1991B92302400847277 /* SlackMember.m in Sources */,
-				E04E9BEA1B9D3FCC003E6959 /* Sides.m in Sources */,
-				E04E9BE71B9D3E55003E6959 /* UIView+Constraints.m in Sources */,
 				E04E9BA01B9BC099003E6959 /* SlackListCollectionViewCell.m in Sources */,
 				E052E1901B9168BE00847277 /* DetailViewController.m in Sources */,
 			);
