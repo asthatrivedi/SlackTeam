@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "SlackService.h"
+#import "Utils.h"
 
 @interface AppDelegate ()
 
@@ -21,7 +22,7 @@
     
     // Poll for Slack Team members from the API.
     [[SlackService sharedService] pollSlackTeamListFromServer];
-    
+    [self.window setTintColor:kSystemTintColor];
     return YES;
 }
 

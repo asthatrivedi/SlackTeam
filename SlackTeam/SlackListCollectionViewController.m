@@ -14,6 +14,7 @@
 #import "SlackTeamViewModel.h"
 #import "Utils.h"
 
+
 @interface SlackListCollectionViewController ()
 
 @property (nonatomic, strong) SlackTeamViewModel *slackTeamViewModel;
@@ -24,16 +25,19 @@
 @implementation SlackListCollectionViewController
 
 static NSString * const reuseIdentifier = @"CollectionCell";
+static NSString * const kTitle = @"Slack Team";
+static NSString * const kDetailIdentifier = @"pushDetail";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Slack Team";
+    self.title = kTitle;
     
-    self.collectionView.backgroundColor = [UIColor colorWithRed:60.f/255.f green:42.f/255.f blue:59.f/255.f alpha:1.f];
+    self.collectionView.backgroundColor = kSystemTintColor;
+    self.navigationController.navigationBar.tintColor = kSystemTintColor;
+    self.navigationItem.titleView.tintColor = kSystemTintColor;
 
-    // Register cell classes
-    [self.collectionView registerClass:[SlackListCollectionViewCell class] forCellWithReuseIdentifier:reuseIdentifier];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(_handleCoreDataChangeNotification)
@@ -79,7 +83,7 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     self.selectedIndex = indexPath.row;
-    [self performSegueWithIdentifier:@"pushDetail" sender:self];
+    [self performSegueWithIdentifier:kDetailIdentifier sender:self];
 }
 
 
@@ -119,13 +123,13 @@ static NSString * const reuseIdentifier = @"CollectionCell";
 - (void)_handlePhotoDownlaodedNotification:(NSNotification *)notif {
     NSDictionary *userInfo = [notif userInfo];
     
-    NSString *key = userInfo[@"key"];
+    NSString *key = userInfo[kIndexKey];
     
     NSLog(@"key: %@", key);
     self.slackTeamViewModel = [[SlackService sharedService] slackList];
-//    [self.collectionView reloadData];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[key integerValue] inSection:0];
-    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+    [self.collectionView reloadData];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[key integerValue] inSection:0];
+//    [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
 }
 
 

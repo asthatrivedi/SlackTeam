@@ -7,9 +7,11 @@
 //
 
 #import "Utils.h"
+#import <UIKit/UIKit.h>
 
 NSString * const kSlackServiceAddedContentNotification = @"com.astha.SlackTeam.AddedContent";
 NSString * const kPhotoDownloadedNotification = @"com.astha.SlackTeam.PhotoDownloaded";
+NSString * const kIndexKey = @"key";
 
 @implementation Utils
 
