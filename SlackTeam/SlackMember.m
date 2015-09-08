@@ -66,12 +66,13 @@ NSString * const kEmail = @"email";
         member.memberId = memberJson[kMemberID];
         member.name = memberJson[kDisplayName];
         member.realName = memberJson[kRealName];
-        member.title = memberJson[kTitle];
         
         NSDictionary *profileDict = memberJson[kProfile];
         
         member.largeImage = profileDict[kProfilePicOriginal];
         member.email = profileDict[kEmail];
+        member.title = profileDict[kTitle];
+
     }
     else {
         member = [results firstObject];
