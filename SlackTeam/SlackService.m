@@ -86,15 +86,9 @@ typedef void (^BasicCompletionBlock)(NSError *error);
             isError = NO;
             self.teamViewModel = [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:self.slackTeamModelList];
             [self _downloadImagesFromServer:^(NSError *error) {
-                BOOL isError;
                 if (error) {
                     NSLog(@"image download error");
-                    isError = YES;
                 }
-                else {
-                    isError = NO;
-                }
-                [self _contentAddedNotificationIsError:isError];
             }];
             NSLog(@"success");
         }
@@ -103,6 +97,16 @@ typedef void (^BasicCompletionBlock)(NSError *error);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"error!!");
+        NSArray *listFromCoreData = [SlackMember getSlackMembersFromCoreDataForManagedContext:managedContext];
+        BOOL isError = NO;
+        if ([listFromCoreData count]) {
+            self.slackTeamModelList = listFromCoreData;
+            self.teamViewModel = [SlackTeamViewModel viewModelWithSlackMemberFetchObjects:self.slackTeamModelList];
+        }
+        else {
+            isError = YES;
+        }
+        [self _contentAddedNotificationIsError:isError];
     }];
     
     [operation start];

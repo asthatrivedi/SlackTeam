@@ -40,6 +40,17 @@ NSString * const kEmail = @"email";
     return members;
 }
 
++ (NSArray *)getSlackMembersFromCoreDataForManagedContext:(NSManagedObjectContext *)context {
+    
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"SlackMember"];
+
+    NSError *error = nil;
+    
+    NSArray *results = [context executeFetchRequest:fetch error:&error];
+
+    return results;
+}
+
 #pragma mark - Private Helper Methods
 
 + (SlackMember *)_parseIndividualSlackMemberJson:(NSDictionary *)memberJson

@@ -18,6 +18,8 @@
 @property (nonatomic, retain) NSString * largeImage;
 @property (nonatomic, retain) NSString * email;
 
++ (NSArray *)getSlackMembersFromCoreDataForManagedContext:(NSManagedObjectContext *)context;
 + (NSArray *)parseSlackMembersJson:(NSArray *)membersJson manageContext:(NSManagedObjectContext *)context;
+
 
 @end
